@@ -1,7 +1,7 @@
 pipeline {
   agent any
   environment {
-  tool name: 'java-20', type: 'jdk'
+  Java_Home = tool name: 'java-20', type: 'jdk'
   }
   stages {
       stage('Build Artifact') {

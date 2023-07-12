@@ -4,6 +4,18 @@ pipeline {
   Java_Home = tool name: 'java-20', type: 'jdk'
   }
   stages {
+      stage('Snyk Test using plugin') {
+            // Run snyk test to check for vulnerabilities and fail the build if any are found
+            steps {
+                // Run snyk test, output results as json and then run snyk-filter using that json and the location of the filter.
+                snykSecurity( 
+                    snykInstallation: 'snyk@latest', 
+                    snykTokenId: 'snyk_api_token', 
+                    monitorProjectOnBuild: false, // snyk-filter is not supported with monitor, so this should be set to false.
+                    failOnIssues: 'false', // if the build fails in the snykSecurity step, snyk-filter will not run, which is why failOnIssues is set to false.
+                    additionalArguments: '--json-file-output=all-vulnerabilities.json'
+                )
+                sh 'snyk-filter -i all-vulnerabilities.json -f snyk-filter/exploitable_cvss_9.yml'
       stage('Build Artifact') {
             steps {
               withMaven(maven: 'maven') {

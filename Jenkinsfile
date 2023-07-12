@@ -16,6 +16,8 @@ pipeline {
                     additionalArguments: '--json-file-output=all-vulnerabilities.json'
                 )
                 sh 'snyk-filter -i all-vulnerabilities.json -f snyk-filter/exploitable_cvss_9.yml'
+            }
+      }
       stage('Build Artifact') {
             steps {
               withMaven(maven: 'maven') {

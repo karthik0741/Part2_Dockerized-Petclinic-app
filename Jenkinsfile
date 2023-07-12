@@ -1,6 +1,6 @@
 pipeline {
   agent any
-  
+  tool name: 'java-20', type: 'jdk'
   stages {
       stage('Build Artifact') {
             steps {

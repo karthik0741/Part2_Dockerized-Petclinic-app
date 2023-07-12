@@ -5,7 +5,6 @@ pipeline {
       stage('Build Artifact') {
             steps {
               withMaven(maven: 'maven') {
-              env.JAVA_HOME="${tool 'java'}"
               sh "mvn clean package -DskipTests=true" 
               archive 'target/*.jar'
               }

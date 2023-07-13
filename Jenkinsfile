@@ -29,7 +29,7 @@ pipeline {
       stage('Test Maven - JUnit') {
             steps {
               withMaven(maven: 'maven') {
-              sh "mvn test -Dcheckstyle.skip
+              sh "mvn test -Dcheckstyle.skip"
               }
             }
             post{

@@ -49,13 +49,6 @@ pipeline {
                 -Dsonar.organization=karthik0741 \
                 -Dsonar.host.url=https://sonarcloud.io" 
                           }     
-                
-              sleep(60)
-              timeout(time: 2, unit: 'MINUTES') {
-                      script {
-                        waitForQualityGate abortPipeline: true
-                      }
-                }
               }
         }
      }

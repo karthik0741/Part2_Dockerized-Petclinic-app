@@ -55,7 +55,8 @@ pipeline {
             steps {
               withDockerRegistry(credentialsId: 'dockercred', url: 'https://registry.hub.docker.com') {
               sh "docker build -t petclinic_img ."
-              sh "docker push petclinic_img"
+	      sh "docker tag petclinic_img:latest images:petclinic_img"
+              sh "docker push images:petclinic_img"
               }
             }  
        }

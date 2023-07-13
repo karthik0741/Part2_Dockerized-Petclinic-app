@@ -15,7 +15,7 @@ pipeline {
                     failOnIssues: 'false', // if the build fails in the snykSecurity step, snyk-filter will not run, which is why failOnIssues is set to false.
                     additionalArguments: '--json-file-output=all-vulnerabilities.json'
                 )
-                sh 'snyk-filter -i all-vulnerabilities.json
+                sh 'snyk-filter -i all-vulnerabilities.json'
             }
       }
       stage('Build Artifact') {

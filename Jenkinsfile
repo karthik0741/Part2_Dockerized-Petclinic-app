@@ -15,7 +15,6 @@ pipeline {
                     failOnIssues: 'false', // if the build fails in the snykSecurity step, snyk-filter will not run, which is why failOnIssues is set to false.
                     additionalArguments: '--json-file-output=all-vulnerabilities.json'
                 )
-                sh 'snyk-filter -i all-vulnerabilities.json -f snyk-filter/exploitable_cvss_9.yml'
             }
       }
       stage('Build Artifact') {
@@ -51,5 +50,13 @@ pipeline {
                           }     
               }
         }
+        stage('Docker Image creation') {
+            steps {
+              withDockerRegistry(credentialsId: 'dockercred', url: 'https://hub.docker.com/') {
+              sh "docker build -t petclinic_img ."
+              sh "docker push petclinic_img"
+              }
+            }  
+       }
      }
 }

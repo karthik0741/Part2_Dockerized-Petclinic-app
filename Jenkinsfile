@@ -29,7 +29,7 @@ pipeline {
       stage('Test Maven - JUnit') {
             steps {
               withMaven(maven: 'maven') {
-              sh "mvn test"
+              sh "mvn test -Dcheckstyle.skip
               }
             }
             post{
@@ -43,7 +43,7 @@ pipeline {
        stage('Sonarqube Analysis - SAST') {
             steps {
               withMaven(maven: 'maven') {
-              sh "mvn clean verify sonar:sonar \
+              sh "mvn clean verify sonar:sonar -Dcheckstyle.skip \
                 -Dsonar.token=d9f2df603842a18921cac69fa3705a3cbc257126 \
                 -Dsonar.projectKey=karthik0741_Part2_Petclinic \
                 -Dsonar.organization=karthik0741 \

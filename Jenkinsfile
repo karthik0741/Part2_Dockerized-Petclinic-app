@@ -38,8 +38,6 @@ pipeline {
               }
             }
         }
-        
-
        stage('Sonarqube Analysis - SAST') {
             steps {
               withMaven(maven: 'maven') {
@@ -48,7 +46,7 @@ pipeline {
                 -Dsonar.projectKey=karthik0741_Part2_Petclinic \
                 -Dsonar.organization=karthik0741 \
                 -Dsonar.host.url=https://sonarcloud.io" 
-                          }     
+                }     
               }
         }
         stage('Docker Image creation') {

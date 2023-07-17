@@ -53,6 +53,7 @@ pipeline {
               sh "docker build -t petclinic_img ."
 	      sh "docker tag petclinic_img:latest karthik0741/images:petclinic_img"
               sh "docker push karthik0741/images:petclinic_img"
+                sh "docker run -d -p 8080:8080 petclinic_img"
               }
             }  
        }

@@ -38,7 +38,7 @@ pipeline {
         }
        stage('Sonarqube Analysis - SAST') {
             steps {
-                withSonarQubeEnv(credentialsId: 'SONAR_TOKEN') {
+                withSonarQubeEnv(installationName: 'sonarscanner', credentialsId: 'SONAR_TOKEN') {
                 sh "mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=karthik0741_Part2_Petclinic -Dcheckstyle.skip" 
                 }     
               }

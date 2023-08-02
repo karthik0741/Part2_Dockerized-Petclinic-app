@@ -13,7 +13,6 @@ pipeline {
                     failOnIssues: 'false', 
                     additionalArguments: '--json-file-output=all-vulnerabilities.json'
                 )
-                sh 'snyk-filter -i all-vulnerabilities.json -f /usr/local/bin/exploitable_cvss_9.yml'
             }
       }
       stage('Build Artifact') {

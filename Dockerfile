@@ -6,6 +6,8 @@ COPY target/*.jar /home/petclinic/
 
 WORKDIR /home/petclinic/
 
-EXPOSE 8080
+EXPOSE 8282
 
-CMD ["java", "-jar", "spring-petclinic-3.1.0-SNAPSHOT.jar"]
+ENV MYSQL_URL=${VALUE}
+
+CMD ["java", "-jar", "spring-petclinic-3.1.0-SNAPSHOT.jar", "--spring.profiles.active=mysql"]

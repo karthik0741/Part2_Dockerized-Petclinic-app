@@ -8,8 +8,6 @@ WORKDIR /home/petclinic/
 
 EXPOSE 8282
 
-ARG VALUE="not set"
-
-ENV MYSQL_URL=${VALUE}
+ENV MYSQL_URL=jdbc:mysql://petclinic-mysql:3306/petclinic
 
 CMD ["java", "-jar", "spring-petclinic-3.1.0-SNAPSHOT.jar", "--spring.profiles.active=mysql"]
